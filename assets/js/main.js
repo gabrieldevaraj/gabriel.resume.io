@@ -16,7 +16,8 @@ jQuery(document).ready(function($) {
     }
 
     // Set the calculated years of experience in the HTML element
-    $('#experience-years').text(experienceYears + '+');
+    // Updated to show 4+ years of experience
+    $('#experience-years').text('4+');
 
     var mastheadheight = $('.ds-header').outerHeight();
     //console.log(mastheadheight);
@@ -28,6 +29,84 @@ jQuery(document).ready(function($) {
         } else {
             $('.ds-header').removeClass('ds-fixed-header');
         }
+        
+        // Update scroll progress indicator
+        updateScrollProgress();
+        
+        // Update active navigation item
+        updateActiveNav();
     }).scroll();
+
+    // Smooth scroll for navigation links
+    $('.nav-icon').on('click', function(e) {
+        e.preventDefault();
+        const targetId = $(this).attr('href');
+        const targetSection = $(targetId);
+        
+        if (targetSection.length) {
+            const headerHeight = $('.ds-header').outerHeight();
+            const targetPosition = targetSection.offset().top - headerHeight - 20;
+            
+            $('html, body').animate({
+                scrollTop: targetPosition
+            }, 800, 'swing');
+        }
+    });
+
+    // Function to update active navigation item based on scroll position
+    function updateActiveNav() {
+        const scrollPos = $(window).scrollTop() + $(window).height() / 3;
+        const headerHeight = $('.ds-header').outerHeight();
+        
+        $('.nav-icon').each(function() {
+            const targetId = $(this).attr('href');
+            const targetSection = $(targetId);
+            
+            if (targetSection.length) {
+                const sectionTop = targetSection.offset().top - headerHeight - 100;
+                const sectionBottom = sectionTop + targetSection.outerHeight();
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                    $('.nav-icon').removeClass('active');
+                    $(this).addClass('active');
+                }
+            }
+        });
+        
+        // Handle home section (at top)
+        if ($(window).scrollTop() < 200) {
+            $('.nav-icon').removeClass('active');
+            $('.nav-icon[href="#home"]').addClass('active');
+        }
+        
+        // Handle contact section (at bottom)
+        const documentHeight = $(document).height();
+        const windowHeight = $(window).height();
+        if ($(window).scrollTop() + windowHeight >= documentHeight - 100) {
+            $('.nav-icon').removeClass('active');
+            $('.nav-icon[href="#contact"]').addClass('active');
+        }
+    }
+
+    // Function to update scroll progress indicator
+    function updateScrollProgress() {
+        const windowHeight = $(window).height();
+        const documentHeight = $(document).height();
+        const scrollTop = $(window).scrollTop();
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        
+        // Create scroll indicator if it doesn't exist
+        if ($('.scroll-indicator').length === 0) {
+            $('body').prepend('<div class="scroll-indicator"></div>');
+        }
+        
+        $('.scroll-indicator').css('width', scrollPercent + '%');
+    }
+
+    // Initialize active nav on page load
+    updateActiveNav();
+    
+    // Add scroll indicator on page load
+    updateScrollProgress();
 
 });

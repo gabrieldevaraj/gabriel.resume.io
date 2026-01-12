@@ -13,7 +13,7 @@ Theme Name: Jason Stroff
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------*/
-html {font-family: 'Inter', sans-serif;background-color:#FFF}
+html {font-family: 'Inter', sans-serif;background-color:#FFF; scroll-behavior: smooth;}
 body {font-family: 'Inter', sans-serif;overflow-x: hidden; background-color:#FFF; font-weight:400;font-style: normal; color:#373737; font-size:14px}
 a,a:hover,a:focus,i,input,button,input:focus,.transition {text-decoration: none;outline: none;transition-delay: 0s;transition-duration: 0.4s;transition-property: all;transition-timing-function: ease;box-shadow: none;}
 a{color: #000}
@@ -52,6 +52,40 @@ svg,img { max-width: 100%; height: auto; }
 .ds-banner section{ padding-left: 70px; padding-right: 100px; }
 .ds-banner section h1 span{ display: block; text-transform: uppercase; letter-spacing: 1px;  font-weight: 500; font-size: 16px; padding-bottom: 30px; }
 .ds-banner section h1{ font-weight: 600; font-size: 48px; line-height: 60px; color: #000; }
+
+/* Profile Image Styling */
+.ds-banner figure {
+  position: relative;
+  padding: 20px;
+}
+
+.ds-banner figure img {
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
+  border: 4px solid #F26464;
+  transition: all 0.4s ease;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.ds-banner figure img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 70px rgba(37, 99, 235, 0.3);
+}
+
+.ds-banner figure::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  z-index: -1;
+  transform: rotate(-2deg);
+}
 .ds-numbervalulist{ list-style: none; display: flex; align-items: center; flex-wrap: wrap; margin: 0; padding: 0; margin-top: 60px; }
 .ds-numbervalulist li{ margin-right: 60px; }
 .ds-numbervalulist li:last-child{ margin-right: 0; }
@@ -66,6 +100,17 @@ svg,img { max-width: 100%; height: auto; }
 
 .ds-button{ display: inline-block; text-transform: uppercase;font-size: 12px;line-height: 13px;font-weight: 600;letter-spacing: 3px; color:#F26464; padding:17px 30px;  border: 2px solid #F26464;border-radius: 60px; }
 .ds-button:hover{ background-color:#F26464 ; color: #FFF; }
+.ds-button i{ margin-right: 8px; }
+.ds-button.back-button {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 30px;
+  background-color: transparent;
+}
+.ds-button.back-button:hover {
+  background-color: #F26464;
+  color: #FFF;
+}
 .ds-arrow-button i{ display: inline-block; vertical-align: middle; }
 /*-----------------------------------------------------------------
   4. >>> Skills Style
@@ -109,7 +154,214 @@ span.ds-department{ color: #373737; font-weight: 500; font-size: 18px; padding-b
 .ds-work-content-sec li{font-size: 18px; line-height: 36px;  padding-left: 28px; position:relative; margin-bottom: 20px;}
 .ds-work-content-sec li:before{ content: ""; position: absolute; left: 0; top: 13px; border-radius: 100%; width: 8px; height: 8px; background-color: #373737; }
 /*-----------------------------------------------------------------
-  7. >>> Footer Style
+  7. >>> Certifications Style
+----------------------------------------------------------------*/
+.ds-certifications-list {
+  padding-top: 15px;
+}
+
+.ds-certification-item {
+  background: #FFF;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-certification-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #F26464 0%, #ff8a8a 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.ds-certification-item:hover::before {
+  transform: scaleY(1);
+}
+
+.ds-certification-item:hover {
+  border-color: #F26464;
+  box-shadow: 0 8px 25px rgba(242, 100, 100, 0.15);
+  transform: translateY(-5px);
+}
+
+.cert-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #F26464 0%, #ff8a8a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #FFF;
+  font-size: 28px;
+}
+
+.ds-cert-name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.ds-cert-org {
+  display: block;
+  color: #373737;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.ds-cert-date {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.ds-cert-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #F26464;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.ds-cert-link:hover {
+  color: #ff8a8a;
+  gap: 8px;
+}
+
+.ds-cert-link i {
+  font-size: 16px;
+}
+
+/*-----------------------------------------------------------------
+  8. >>> Projects Style
+----------------------------------------------------------------*/
+.ds-projects-list {
+  padding-top: 15px;
+}
+
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.ds-project-item {
+  background: #FFF;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.ds-project-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #F26464 0%, #ff8a8a 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.ds-project-item:hover::before {
+  transform: scaleY(1);
+}
+
+.ds-project-item:hover {
+  border-color: #F26464;
+  box-shadow: 0 8px 25px rgba(242, 100, 100, 0.15);
+  transform: translateY(-5px);
+}
+
+.project-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #F26464 0%, #ff8a8a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #FFF;
+  font-size: 28px;
+}
+
+.ds-project-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 15px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.project-card-link:hover .ds-project-name {
+  color: #F26464;
+}
+
+.ds-project-description {
+  color: #373737;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.project-tag {
+  display: inline-block;
+  padding: 6px 15px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #373737;
+  transition: all 0.3s ease;
+}
+
+.ds-project-item:hover .project-tag {
+  background: #fff5f5;
+  border-color: #F26464;
+  color: #F26464;
+}
+
+/*-----------------------------------------------------------------
+  9. >>> Footer Style
 ----------------------------------------------------------------*/
 .ds-footer{ background-color: #000; padding: 120px 0; }
 .ds-footer section { padding-bottom: 97px; }
@@ -120,12 +372,234 @@ span.ds-department{ color: #373737; font-weight: 500; font-size: 18px; padding-b
 .ds-copyright a{color: rgba(255,255,255,0.5);}
 .ds-copyright a:hover{ color: #F26464; }
 
+/*-----------------------------------------------------------------
+  10. >>> Floating Navigation Style
+----------------------------------------------------------------*/
+.floating-nav {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 15px 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.floating-nav:hover {
+  box-shadow: 0 12px 40px rgba(242, 100, 100, 0.2);
+}
+
+.nav-icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  color: #373737;
+  font-size: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-icon:hover {
+  background: linear-gradient(135deg, #F26464 0%, #ff8a8a 100%);
+  color: #FFF;
+  transform: scale(1.1);
+}
+
+.nav-icon.active {
+  background: linear-gradient(135deg, #F26464 0%, #ff8a8a 100%);
+  color: #FFF;
+  box-shadow: 0 4px 15px rgba(242, 100, 100, 0.4);
+}
+
+.nav-icon.active::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  width: 4px;
+  height: 50px;
+  background: linear-gradient(180deg, #F26464 0%, #ff8a8a 100%);
+  border-radius: 2px;
+}
+
+.nav-icon i {
+  transition: transform 0.3s ease;
+}
+
+.nav-icon:hover i {
+  transform: scale(1.2);
+}
+
+/* Tooltip on hover */
+.nav-icon[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  right: 60px;
+  background: #000;
+  color: #FFF;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInTooltip 0.3s ease forwards;
+}
+
+@keyframes fadeInTooltip {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modern UI Enhancements */
+.ds-banner {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(242, 100, 100, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ds-about-section {
+  background: #FFF;
+  position: relative;
+}
+
+.ds-skills-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.ds-skills-list li {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.ds-skills-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(242, 100, 100, 0.2);
+  border-color: #F26464;
+  color: #F26464;
+}
+
+.ds-experience-section {
+  background: #FFF;
+}
+
+.ds-experience-list section {
+  transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.ds-experience-list section:hover {
+  background: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.ds-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.ds-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ds-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.ds-footer {
+  background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+  position: relative;
+}
+
+.ds-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F26464, transparent);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #F26464, #ff8a8a);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
 
 
 /*-------------------------------------------------------------------------------
  Responsive XS Style @media (max-width: 767px) 
 -------------------------------------------------------------------------------*/
 @media (max-width: 768px) {
+	.floating-nav {
+		right: 15px;
+		padding: 10px 8px;
+	}
+	
+	.nav-icon {
+		width: 40px;
+		height: 40px;
+		font-size: 18px;
+	}
+	
+	.nav-icon.active::before {
+		display: none;
+	}
+	
+	.nav-icon[title]:hover::after {
+		display: none;
+	}
+	
 	.ds-header,.ds-header.ds-fixed-header{ padding: 15px 0; }
 	.ds-banner,.ds-about-section,.ds-skills-section,.ds-experience-section,.ds-work-section,.ds-work-details-section{ padding-left: 10px; padding-right: 10px; }
 	.ds-logo{ font-size: 0; }
@@ -140,8 +614,15 @@ span.ds-department{ color: #373737; font-weight: 500; font-size: 18px; padding-b
 	.ds-about-section{ padding-bottom: 60px; }
 	.ds-about-section p,.ds-work-content-sec p,.ds-work-content-sec li{ font-size: 15px; line-height: 30px;margin-bottom: 30px; }
 	.ds-skills-list li{ margin-right: 10px; margin-bottom: 10px; font-size: 14px; }
-	.ds-skills-section .col-12,.ds-experience-list .col-12{ margin-bottom: 40px; }
-	.ds-skills-section,.ds-work-section, .ds-experience-section{ padding-bottom: 0; }
+	.ds-skills-section .col-12,.ds-experience-list .col-12,.ds-certifications-list .col-12,.ds-projects-list .col-12{ margin-bottom: 40px; }
+	.ds-skills-section,.ds-work-section, .ds-experience-section,.ds-certifications-list,.ds-projects-list{ padding-bottom: 0; }
+	.ds-project-item{ padding: 20px; }
+	.project-icon{ width: 50px; height: 50px; font-size: 24px; }
+	.ds-project-name{ font-size: 20px; }
+	.ds-project-description{ font-size: 14px; line-height: 22px; }
+	.ds-certification-item{ padding: 20px; }
+	.cert-icon{ width: 50px; height: 50px; font-size: 24px; }
+	.ds-cert-name{ font-size: 18px; }
 	.ds-experience-list section{ padding-right: 0; }
 	.ds-work-list{ padding: 30px; }
 	.ds-work-list p{font-size: 15px; line-height: 30px;}
